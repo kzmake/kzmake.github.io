@@ -4,7 +4,7 @@
     "dev": "slidev --open",
     "build": "slidev build",
     "export": "slidev export",
-    "pub": "slidev build --base /example && gh-pages -d dist -e /example"
+    "pub": "slidev build --base /slides/YYYYMMDD_example && gh-pages -d dist -e /slides/YYYYMMDD_example"
   },
   "dependencies": {
     "@slidev/cli": "^0.22.1",
