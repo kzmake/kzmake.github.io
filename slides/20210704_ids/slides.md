@@ -1,326 +1,794 @@
 ---
-# try also 'default' to start simple
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://source.unsplash.com/collection/94734566/1920x1080
-# apply any windi css classes to the current slide
-class: 'text-center'
-# https://sli.dev/custom/highlighters.html
-highlighter: shiki
-# some information about the slides, markdown enabled
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
----
-
-# ID
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 p-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-  class="abs-br m-6 text-xl icon-btn opacity-50 !border-none !hover:text-white">
-  <carbon-logo-github />
-</a>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
----
-
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
-}
-</style>
-
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd>| previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
-
-# Code
-
-Use code snippets and get the highlighting directly!
-
-<!-- https://sli.dev/guide/syntax.html#line-highlighting -->
-
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
-
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = {...user, ...update}  
-  saveUser(id, newUser)
-}
-```
-
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes are able to provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
 theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div 
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-2 gap-4 pt-4 -mb-6">
-
-```mermaid {scale: 0.9}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
-
----
-layout: center
+background: https://source.unsplash.com/collection/94734566/1920x1080
 class: text-center
+canvasWidth: 1300
+highlighter: shiki
+info: |
+  ## ID生成あれこれ2021
+  ID生成まわりについて
+
+  by kzmake
+title: ID生成
 ---
 
-# Learn More
+# ID生成あれこれ2021
 
-[Documentations](https://sli.dev) / [GitHub Repo](https://github.com/slidevjs/slidev)
+使われそうなIDについてあれこれまとめます
+
+<!--
+aaaaa
+-->
+
+---
+
+# IDとは？
+
+ある集合から特定のモノを一意に識別したりする際に利用する識別子。具体的には下記がありそう。
+
+- メールアドレス
+- 携帯番号
+- マイナンバー
+- 社員番号
+- 集約やエンティティのID
+- セッションID
+- リクエストID
+- アクセストークン
+- URI(/URL/URN)
+
+<!--
+ドメインモデルの識別子やリクエストの識別子など一意なIDとして生成しなきゃいけない場面がよくあります。そのIDの生成について軽めにまとめていきます。
+-->
+
+---
+
+# よく使われそうなID
+
+- AUTO_INCREMENT
+- 事前採番方式
+- Hashids + 連番
+- UUIDv1/v4
+- ULID
+- UUIDv6/v7
+
+---
+
+
+# IDを選択する観点
+
+- 型
+- サイズ
+- ソート可能
+- 速度
+- タイムスタンプ
+- ランダム性
+- シーケンシャル
+
+---
+
+# 影響をあたえるもの: MySQL(InnoDB)の空間効率
+
+MySQL(InnoDB)では B+ tree が利用されている。
+
+ランダム性が強いとインデックスの空間効率が悪くなるらしい。
+逆に、ソート可能であると効率はよくなる。
+
+https://zenn.dev/j5ik2o/articles/a085ab3e3d0f197f6559
+
+> 100万件以上扱う場合は、INSERT時間のペナルティが大きくなります
+
+- http://kccoder.com/mysql/uuid-vs-int-insert-performance/
+- https://qiita.com/sifue/items/c9192726bdce4b4a6dd7
+
+---
+
+# DBによるAUTO_INCREMENT
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+123
+```
+
+|                |                          |
+| -------------- | ------------------------ |
+| 型             | int64                    |
+| サイズ         | -                        |
+| ソート         | ○                        |
+| 速度           | × (golang 3989625 ns/op) |
+| URLセーフ      | ○                        |
+| タイムスタンプ | なし                     |
+| ランダム       | なし                     |
+| シーケンシャル | AUTO_INCREMENTに従う     |
+
+## 特徴
+
+- 事後採番型のため、モデルIDの初期値未定義問題がよくおこる
+    - MySQLのLAST_INSERT_IDやPostgreSQLで事前採番も可能
+        - https://qiita.com/NAKANO_Akihito/items/44db44375a464c72606a
+- DBのネットワークI/OやディスクI/Oのレイテンシを受ける
+- SPoFになりやすい
+- そのまま使うとIDがバレバレで推測が容易
+
+</div>
+<div>
+
+## Layout
+※64bit
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                              seq                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                              seq                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+# DBによるAUTO_INCREMENT + hashids: https://hashids.org/
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+XPjowja0
+```
+
+|                |                                              |
+| -------------- | -------------------------------------------- |
+| 型             | string                                       |
+| サイズ         | -                                            |
+| ソート         | ×                                            |
+| 速度           | × (golang 4036252 ns/op) (hashids 869 ns/op) |
+| URLセーフ      | ○                                            |
+| タイムスタンプ | なし                                         |
+| ランダム       | なし                                         |
+| シーケンシャル | AUTO_INCREMENTに従う                         |
+
+## 特徴
+
+- DBによるAUTO_INCREMENTとほぼ同じ
+- hashidsの特徴
+    - 推測困難
+    - ソルトやカスタムアルファベットを指定可能
+    - 任意長の文字列を生成可能
+
+</div>
+<div>
+
+## Layout
+※64bit
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                              seq                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                              seq                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+# UUIDv4: https://datatracker.ietf.org/doc/html/rfc4122
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+031cba4b-cbfc-463f-afe8-a50af36f3eb3
+```
+
+|                |                                      |
+| -------------- | ------------------------------------ |
+| 型             | string                               |
+| サイズ         | 128 bits (32 chars※ハイフンを除いて) |
+| ソート         | ×                                    |
+| 速度           | ◎ (golang 200 ns/op)                 |
+| URLセーフ      | ○                                    |
+| タイムスタンプ | なし                                 |
+| ランダム       | 2^122(バリアント1の場合)             |
+| シーケンシャル | なし                                 |
+
+## 特徴
+
+- 推測困難なため、アクセストークンやセッションIDとしても利用される
+- まあ、ぶつからない
+- ほぼ全ての言語で利用できる
+- MySQL(InnoDB)での空間効率は良くないらしい
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          random                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|       random                  |0 1 0 0|         random        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|1 0|                          random                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          random                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+
+---
+
+# UUIDv1: https://datatracker.ietf.org/doc/html/rfc4122
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+ddb39472-ddba-11eb-8b44-149d9980a4d2
+```
+
+|                |                                               |
+| -------------- | --------------------------------------------- |
+| 型             | string                                        |
+| サイズ         | 128 bits (32 chars※ハイフンを除いて)          |
+| ソート         | ×(タイムスタンプの上位と下位が逆転してるから) |
+| 速度           | ◎ (golang 157 ns/op)                          |
+| URLセーフ      | ○                                             |
+| タイムスタンプ | ○                                             |
+| ランダム       | なし                                          |
+| シーケンシャル | 2^16                                          |
+
+## 特徴
+
+- ほぼ全ての言語で利用できる
+- MySQL(InnoDB)での空間効率は良くないらしい
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          time_low                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|       time_mid                |0 0 0 1|      time_high        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         node (2-5)                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+# ULID: https://github.com/ulid/spec
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+
+```
+01ARZ3NDEKTSV4RRFFQ69G5FAV
+```
+
+|                |                      |
+| -------------- | -------------------- |
+| 型             | string               |
+| サイズ         | 128 bits (36 chars)  |
+| ソート         | ○                    |
+| 速度           | ◎ (golang 177 ns/op) |
+| URLセーフ      | ○                    |
+| タイムスタンプ | ミリ秒               |
+| ランダム       | 2^80 ids per msec    |
+| シーケンシャル | なし                 |
+
+## 特徴
+
+- Crockford's base32 を使っている
+- UUIDとの128ビット互換性
+- そこそこ様々な言語で利用できる
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    32_bit_timestamp_ms_high                   |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   16_bit_timestamp_ms_low     |       16_bit_uint_random      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       32_bit_uint_random                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       32_bit_uint_random                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+
+---
+
+
+# xid: https://github.com/rs/xid
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+c3hkhd86n88o0jdjgatg
+```
+
+|                |                                   |
+| -------------- | --------------------------------- |
+| 型             | string                            |
+| サイズ         | 96 bits (20 chars)                |
+| ソート         | ○                                 |
+| 速度           | ◎ (golang 96 ns/op)               |
+| URLセーフ      | ○                                 |
+| タイムスタンプ | 秒                                |
+| ランダム       | 2^24 ids per sec per host/process |
+| シーケンシャル | なし                              |
+
+## 特徴
+
+- [Mongo Object ID](https://docs.mongodb.com/manual/reference/method/ObjectId/) ベース
+- そこそこな言語で利用できる
+- Lock-free
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      32_bit_timestamp_sec                     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     24_bit_machine_identifier                 |  8_bit_pid_h  |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| 8_bit_pid_low |             24_bit_uint_random                |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+# Snowflake: https://github.com/bwmarrin/snowflake
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+1412207541694230528
+```
+
+|                |                           |
+| -------------- | ------------------------- |
+| 型             | int64                     |
+| サイズ         | 63 bits                   |
+| ソート         | ◎                         |
+| 速度           | ○ (golang 244.0 ns/op)    |
+| URLセーフ      | ○                         |
+| タイムスタンプ | ○                         |
+| ランダム       | なし                      |
+| シーケンシャル | 2^12 per msec per machine |
+
+
+## 特徴
+
+- [snowflake](https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake)
+- 分散ID採番器を想定
+    - 2^10 machines
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          32_bit_timestamp                     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| 9_bit_timestamp |   10_bit_node_id  |     12_bit_seq_id     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+
+---
+
+# Sandflake: https://github.com/sony/sonyflake
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+05X7JEHZ190PR7A70000133R80
+```
+
+|                |                                      |
+| -------------- | ------------------------------------ |
+| 型             | string                               |
+| サイズ         | 128 bits (32 chars※ハイフンを除いて) |
+| ソート         | ○                                    |
+| 速度           | ○ (golang 216 ns/op)                 |
+| URLセーフ      | ○                                    |
+| タイムスタンプ | ○                                    |
+| ランダム       | 2^24 per msec per machine            |
+| シーケンシャル | 2^24 per msec per machine            |
+
+
+## 特徴
+
+- [snowflake](https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake) ベース
+- 分散ID採番器を想定
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       32_bit_timestamp_ms                     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|       16_bit_timestamp_ms     |     16_bit_worker_id_high     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     16_bit_worker_id_low      |       16_bit_seq_high         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| 8_bit_seq_low |                     24_bit_random             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+
+---
+
+# Sonyflake: https://github.com/sony/sonyflake
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+16779884
+```
+
+|                |                             |
+| -------------- | --------------------------- |
+| 型             | uint64                      |
+| サイズ         | 63 bits                     |
+| ソート         | ○                           |
+| 速度           | × (golang 39303 ns/op)      |
+| URLセーフ      | ○                           |
+| タイムスタンプ | ○                           |
+| ランダム       | なし                        |
+| シーケンシャル | 2^8 per 10 msec per machine |
+
+
+## 特徴
+
+- [snowflake](https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake) ベース
+- 分散ID採番器を想定
+    - 2^16 machines
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          32_bit_time_10ms                     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  7_bit_time |    8_bit_seq    |      16_bit_machine_id      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+
+
+# Nanoid: https://github.com/matoous/go-nanoid
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+rN1FcPY7_rX5lJ-xHl0LW
+```
+
+|                |                      |
+| -------------- | -------------------- |
+| 型             | string               |
+| サイズ         | 108 bits (21 chars)  |
+| ソート         | ○                    |
+| 速度           | ○ (golang 299 ns/op) |
+| URLセーフ      | ×                    |
+| タイムスタンプ | ○                    |
+| ランダム       | 2^108                |
+| シーケンシャル | なし                 |
+
+
+## 特徴
+
+- UUIDv4ぽいID
+- いろいろな言語で利用できそう
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             random                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             random                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             random                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         random        |
++-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+
+# KSUID: https://github.com/segmentio/ksuid
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+1uv0Ma3iQrWyQGmWjMYLDEik8BX
+```
+
+|                |                      |
+| -------------- | -------------------- |
+| 型             | string               |
+| サイズ         | 160 bits (27 chars)  |
+| ソート         | ○                    |
+| 速度           | ○ (golang 359 ns/op) |
+| URLセーフ      | ○                    |
+| タイムスタンプ | ○                    |
+| ランダム       | 2^128                |
+| シーケンシャル | なし                 |
+
+## 特徴
+
+- [snowflake](https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake) + UUIDv4
+- base62 エンコード
+- Collision-free, Coordination-free, Dependency-free
+- 100年以上の寿命: 2014年3月5日~ のタイムスタンプで調整済み
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        32_bit_timestamp                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                            random                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                            random                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                            random                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                            random                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+# ShortUUID: https://github.com/segmentio/ksuid
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+AaUfaFQh9GxnsHBHKbjiLE
+```
+
+|                |                      |
+| -------------- | -------------------- |
+| 型             | string               |
+| サイズ         | 128 bits (22 chars)  |
+| ソート         | ×                    |
+| 速度           | △ (golang 5553 ns/op) |
+| URLセーフ      | ○                    |
+| タイムスタンプ | ×                    |
+| ランダム       | 2^122                |
+| シーケンシャル | なし                 |
+
+## 特徴
+
+- UUIDv4
+- base57 エンコード
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          random                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|       random                  |0 1 0 0|         random        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|1 0|                          random                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          random                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+## 新しいUUID
+
+- UUIDv6
+- UUIDv7
+- UUIDv8
+
+---
+
+
+# UUIDv6: [New UUID Formats](https://www.ietf.org/archive/id/draft-peabody-dispatch-new-uuid-format-01.html)
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+1ebddbad-db3a-6296-8000-8da19654df48
+```
+
+|                |                                      |
+| -------------- | ------------------------------------ |
+| 型             | string                               |
+| サイズ         | 128 bits (32 chars※ハイフンを除いて) |
+| ソート         | ○                                    |
+| 速度           | ○ (golang 208 ns/op)                 |
+| URLセーフ      | ○                                    |
+| タイムスタンプ | ○                                    |
+| ランダム       | なし                                 |
+| シーケンシャル | 2^(タイムスタンプの余ったbit次第)    |
+
+## 特徴
+
+- ソート可能なUUIDv1にみえる
+
+</div>
+<div>
+
+## Layout
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         32_bit_time_high                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         16_bit_time_mid       |0 1 1 0|   12_bit_time_low     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|var|       clk_seq             |             node              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             node                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
+# UUIDv7: [New UUID Formats](https://www.ietf.org/archive/id/draft-peabody-dispatch-new-uuid-format-01.html)
+
+<div class="grid grid-cols-[650px,1fr,10%] gap-4">
+<div>
+
+```
+060e348b-5c1b-7943-8000-c414add1c8d1
+```
+
+|                |                                          |
+| -------------- | ---------------------------------------- |
+| 型             | string                                   |
+| サイズ         | 128 bits (32 chars※ハイフンを除いて)     |
+| ソート         | ○                                        |
+| 速度           | ○ (golang 207 ns/op)                     |
+| URLセーフ      | ○                                        |
+| タイムスタンプ | ○                                        |
+| ランダム       | 2^32 + 2^(タイムスタンプの余ったbit次第) |
+| シーケンシャル | 2^(タイムスタンプの余ったbit次第)        |
+
+## 特徴
+
+- ULIDっぽい
+- タイムスタンプが 90bits もある
+    - msec / usec / nsec まで表現できる
+- ソート可能なUUID
+
+</div>
+<div>
+
+## Layout
+
+※ ナノ秒の例
+
+```
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         32_bit_unixtime                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           16_bit_nsec         |0 1 1 1|    12_bit_nsec        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|var|       30_bit_nsec         |      seq      |    random     |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                            random                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
+</div>
+</div>
+
+---
+
